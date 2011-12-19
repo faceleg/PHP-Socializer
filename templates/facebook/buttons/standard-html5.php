@@ -1,0 +1,1 @@
+<div class="fb-like" data-href="<?php echo $this->url; ?>" data-send="<?php echo $this->sendButton; ?>" data-width="<?php echo $this->width; ?>" data-show-faces="<?php echo $showFaces; ?>"></div>
