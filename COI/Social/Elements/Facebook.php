@@ -55,8 +55,4 @@ class Facebook extends BaseElement {
         }
     }
     
-    public function footer() {
-        return $this->getFooter('footer');
-    }
-    
 }
