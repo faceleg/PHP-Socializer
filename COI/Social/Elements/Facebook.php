@@ -53,6 +53,5 @@ class Facebook extends BaseElement {
                 return $this->getButton('count-html5');
             }
         }
-    }
-    
+    }   
 }

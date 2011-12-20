@@ -4,15 +4,14 @@ namespace COI\Social\Elements;
 use COI\Social;
 
 abstract class BaseElement {
-    
-    public function button($options = array());
-    public function script();
         
     public function __construct() {
         $this->templateDir = __DIR__.'../../../templates/'.Social\getClassName($this).'/';
     }    
-    
-    private function getScript() {
+
+    abstract function button($options = array());    
+
+    private function script() {
         return $this->getTemplate('script');
     }
     
