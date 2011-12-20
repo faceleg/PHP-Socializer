@@ -6,14 +6,14 @@ use COI\Social;
 abstract class BaseElement {
     
     public function button($options = array());
-    public function footer();
+    public function script();
         
     public function __construct() {
         $this->templateDir = __DIR__.'../../../templates/'.Social\getClassName($this).'/';
     }    
     
-    private function getFooter() {
-        return $this->getTemplate('footer');
+    private function getScript() {
+        return $this->getTemplate('script');
     }
     
     private function getButton($name) {
