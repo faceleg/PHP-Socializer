@@ -1,7 +1,7 @@
 <?php
 namespace COI\Social;
 
-class Facebook extends AbstractElement {
+class GooglePlus extends AbstractElement {
     
     protected $url = null;
     /**
