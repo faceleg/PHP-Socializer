@@ -31,7 +31,7 @@ class Twitter extends AbstractElement {
         $this->hashtag = $hashtag;
         $this->recommend = $recommend;
         $this->size = $size;
-        $this->count = $counter;
+        $this->counter = $counter;
         $this->type = $type;
 
         parent::__construct();
