@@ -5,23 +5,31 @@ use COI\Social;
 
 abstract class BaseElement {
         
+    private $wasOutput = false;    
+    
     public function __construct() {
-        $this->templateDir = __DIR__.'../../../templates/'.Social\getClassName($this).'/';
+        $this->templateDir = __DIR__.'/../../../templates/'.strtolower(Social\getClassName($this));
     }    
 
     abstract function button($options = array());    
 
-    private function script() {
-        return $this->getTemplate('script');
+    public function script() {
+        return $this->template('script');
+    }
+
+    protected function buttonHtml($name, $parameters) {
+        $this->wasOutput = true;
+        return $this->template($name, 'buttons', $parameters);
     }
     
-    private function getButton($name) {
-        return $this->getTemplate($name, 'button');
-    }
-    
-    private function getTemplate($name, $subDir = null) {
+    private function template($name, $subDir = null, $parameters = array()) {
+        extract($parameters);
         ob_start(); 
-        include $this->templateDir."/{$subdir}/{$name}";
+        include $this->templateDir."/{$subDir}/{$name}.php";
         return ob_get_clean();
-    }    
+    }
+        
+    public function wasOuput() {
+        return $this->wasOuput;
+    }
 }
