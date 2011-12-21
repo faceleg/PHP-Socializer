@@ -2,17 +2,14 @@
 <script type="text/javascript">    
     // COI\Social - Linked In
     (function(){
-        
-
-         _ga.trackLinkedIn = {
+        var trackerName = _ga.buildTrackerName_(opt_trackerName);
+        _ga.trackLinkedIn = {
             success: function() {
-/*
-                 _gaq.push([trackerName + '_trackSocial', 'linkein', 'share',
-                    targetUrl, opt_pageUrl]);
-*/
+                console.log(arguments);
+                _gaq.push([trackerName + '_trackSocial', 'linkedin', 'share', targetUrl, opt_pageUrl]);
             },
             error: function() {
-                alert(arguments);
+                _gaq.push([trackerName + '_trackSocial', 'linkedin', 'error', targetUrl, opt_pageUrl]);
             }
          };
 
