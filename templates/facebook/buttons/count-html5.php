@@ -1,1 +1,6 @@
-<div class="fb-like" data-href="<?php echo $this->url; ?>" data-send="<?php echo $this->sendButton; ?>" data-width="<?php echo $this->width; ?>" data-show-faces="<?php echo $showFaces; ?>" data-layout="button_count"></div>
+<div class="fb-like"
+    data-href="<?php echo $url; ?>" 
+    data-send="<?php echo $sendButton; ?>" 
+    data-width="<?php echo $width; ?>" 
+    data-show-faces="<?php echo $showFaces; ?>" 
+    data-layout="button_count"></div>
