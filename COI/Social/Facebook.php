@@ -3,8 +3,8 @@ namespace COI\Social;
 
 class Facebook extends AbstractElement {
     
-    const STANDARD_HTML5 = 'standard-html5';
-    const COUNT_HTML5 = 'count-html5';    
+    const TYPE_HTML5 = 'html5';
+    const TYPE_XBFML = 'xbfml';    
     
     protected $appId = null;
     protected $showFaces = null;
@@ -13,15 +13,28 @@ class Facebook extends AbstractElement {
     protected $sendButton = null;
     protected $channelUrl = null;
     protected $type = null;
+    /**
+     * standard (default), button_count, box_count
+     */
+    protected $layout = null;
+    protected $font = null;
+    /**
+     * light, dark
+     * @default light
+     */
+    protected $colorScheme = null;
     
     public function __construct($options = array()) {
         $appId = null;
         $url = getCurrentUrl();
-        $width = 130;
+        $width = 450;
         $showFaces = 'false';
         $sendButton = 'true';
         $channelUrl = '//'.$_SERVER['HTTP_HOST'].'/facebook-channel.php';
-        $type = self::STANDARD_HTML5;
+        $type = self::TYPE_HTML5;
+        $layout = 'standard';
+        $font = null;
+        $colorScheme = null;
         extract($options, EXTR_IF_EXISTS);
         
         $this->appId = $appId;
@@ -31,6 +44,9 @@ class Facebook extends AbstractElement {
         $this->sendButton = $sendButton;
         $this->channelUrl = $channelUrl;
         $this->type = $type;
+        $this->layout = $layout;
+        $this->font = $font;
+        $this->colorScheme = $colorScheme;
 
         parent::__construct();
     }
@@ -43,14 +59,17 @@ class Facebook extends AbstractElement {
         $showFaces = $this->showFaces;
         $sendButton = $this->sendButton;
         $channelUrl = $this->channelUrl;
+        $layout = $this->layout;
+        $font = $this->font;
+        $colorScheme = $this->colorScheme;
         extract($options, EXTR_IF_EXISTS);
 
         switch ($type) {
-            case static::STANDARD_HTML5: {
-                return $this->buttonHtml('standard-html5', get_defined_vars());                            
+            case static::TYPE_HTML5: {
+                return $this->buttonHtml('html5', get_defined_vars());                            
             }
-            case static::COUNT_HTML5: {
-                return $this->buttonHtml('count-html5', get_defined_vars());
+            case static::TYPE_XBFML: {
+                return $this->buttonHtml('xbfml', get_defined_vars());
             }
         }
     }   
