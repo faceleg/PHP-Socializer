@@ -2,7 +2,7 @@
 <script type="text/javascript">    
     // COI\Social - Linked In
     (function(){
-        var trackerName = _ga.buildTrackerName_(opt_trackerName);
+        var trackerName = _ga.buildTrackerName_();
         _ga.trackLinkedIn = {
             success: function() {
                 console.log(arguments);
