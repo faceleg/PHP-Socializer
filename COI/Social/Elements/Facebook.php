@@ -8,36 +8,38 @@ class Facebook extends BaseElement {
     const STANDARD_HTML5 = 'standard-html5';
     const COUNT_HTML5 = 'count-html5';    
     
-    private $appId = null;
-    private $showFaces = null;
-    private $url = null;
-    private $width = null;
-    private $sendButton = null;
-    private $channelUrl = null;
-    private $type = null;
+    protected $appId = null;
+    protected $showFaces = null;
+    protected $url = null;
+    protected $width = null;
+    protected $sendButton = null;
+    protected $channelUrl = null;
+    protected $type = null;
     
     public function __construct($options = array()) {
         $appId = null;
         $url = Social\getCurrentUrl();
-        $width = 450;
+        $width = 200;
         $showFaces = 'false';
         $sendButton = 'true';
-        $channelUrl = $_SERVER['HTTP_HOST'].'/facebook-channel.php';
-        $type = static::STANDARD_HTML5;
+        $channelUrl = '//'.$_SERVER['HTTP_HOST'].'/facebook-channel.php';
+        $type = self::STANDARD_HTML5;
         extract($options, EXTR_IF_EXISTS);
         
         $this->appId = $appId;
         $this->showFaces = $showFaces;
         $this->url = $url;
         $this->width = $width;
-        $this->dataSend = $dataSend;
-        
+        $this->sendButton = $sendButton;
+        $this->channelUrl = $channelUrl;
+        $this->type = $type;
+
         parent::__construct();
     }
         
     public function button($options = array()) {
         $type = $this->type;
-        $appId = $this->addId;
+        $appId = $this->appId;
         $url = $this->url;
         $width = $this->width;
         $showFaces = $this->showFaces;
@@ -47,11 +49,12 @@ class Facebook extends BaseElement {
 
         switch ($type) {
             case static::STANDARD_HTML5: {
-                return $this->getButton('standard-html5');                            
+                return $this->buttonHtml('standard-html5', get_defined_vars());                            
             }
             case static::COUNT_HTML5: {
-                return $this->getButton('count-html5');
+                return $this->buttonHtml('count-html5', get_defined_vars());
             }
         }
     }   
+
 }
