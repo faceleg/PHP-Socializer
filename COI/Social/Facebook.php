@@ -17,7 +17,7 @@ class Facebook extends AbstractElement {
     public function __construct($options = array()) {
         $appId = null;
         $url = getCurrentUrl();
-        $width = 200;
+        $width = 150;
         $showFaces = 'false';
         $sendButton = 'true';
         $channelUrl = '//'.$_SERVER['HTTP_HOST'].'/facebook-channel.php';
