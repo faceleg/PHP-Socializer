@@ -27,7 +27,7 @@ abstract class AbstractElement {
         return ob_get_clean();
     }
         
-    public function wasOuput() {
+    public function wasOutput() {
         return $this->wasOuput;
     }
 }
