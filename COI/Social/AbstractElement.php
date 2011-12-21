@@ -28,6 +28,6 @@ abstract class AbstractElement {
     }
         
     public function wasOutput() {
-        return $this->wasOuput;
+        return $this->wasOutput;
     }
 }
