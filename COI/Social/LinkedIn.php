@@ -1,9 +1,7 @@
 <?php
-namespace COI\Social\Elements;
+namespace COI\Social;
 
-use COI\Social;
-
-class LinkedIn extends BaseElement {
+class LinkedIn extends AbstractElement {
     
     protected $url = null;
     /**
@@ -13,7 +11,7 @@ class LinkedIn extends BaseElement {
     protected $showZero = null;
     
     public function __construct($options = array()) {
-        $url = Social\getCurrentUrl();
+        $url = getCurrentUrl();
         $counter = 'right';
         $showZero = true;
         extract($options, EXTR_IF_EXISTS);

@@ -1,14 +1,12 @@
 <?php
-namespace COI\Social\Elements;
+namespace COI\Social;
 
-use COI\Social;
-
-abstract class BaseElement {
+abstract class AbstractElement {
         
     private $wasOutput = false;    
     
     public function __construct() {
-        $this->templateDir = __DIR__.'/../../../templates/'.strtolower(Social\getClassName($this));
+        $this->templateDir = __DIR__.'/../../../templates/'.strtolower(getClassName($this));
     }    
 
     abstract function button($options = array());    

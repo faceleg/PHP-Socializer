@@ -1,9 +1,7 @@
 <?php
-namespace COI\Social\Elements;
+namespace COI\Social;
 
-use COI\Social;
-
-class Twitter extends BaseElement {
+class Twitter extends AbstractElement {
     
     protected $url = null;
     protected $username = null;
@@ -17,7 +15,7 @@ class Twitter extends BaseElement {
     protected $counter = null;
     
     public function __construct($options = array()) {
-        $url = Social\getCurrentUrl();
+        $url = getCurrentUrl();
         $title = null;
         $username = null;
         $hashtag = null;

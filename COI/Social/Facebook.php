@@ -1,9 +1,7 @@
 <?php
-namespace COI\Social\Elements;
+namespace COI\Social;
 
-use COI\Social;
-
-class Facebook extends BaseElement {
+class Facebook extends AbstractElement {
     
     const STANDARD_HTML5 = 'standard-html5';
     const COUNT_HTML5 = 'count-html5';    
@@ -18,7 +16,7 @@ class Facebook extends BaseElement {
     
     public function __construct($options = array()) {
         $appId = null;
-        $url = Social\getCurrentUrl();
+        $url = getCurrentUrl();
         $width = 200;
         $showFaces = 'false';
         $sendButton = 'true';
