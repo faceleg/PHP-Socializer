@@ -13,7 +13,7 @@ class Manager {
         $html = '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
-                $html .= "<div class='coi-button coi-button-{$name}'>{$element->button()}</div>";
+                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->button()}</div>";
             }
         }
         return $html;
