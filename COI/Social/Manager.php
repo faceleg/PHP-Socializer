@@ -9,12 +9,12 @@ class Manager {
         $this->elements = $elements;
     }
     
-    public function buttons($exclude = array()) {        
+    public function buttons($options) {        
         $html = '';
         foreach ($this->elements as $name => $element) {
-            if (!$exclude || !in_array($name, $exclude)) {
-                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->button()}</div>";
-            }
+/*             if (!$exclude || !in_array($name, $exclude)) { */
+                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->button($options)}</div>";
+/*             } */
         }
         return $html;
     }
@@ -57,6 +57,7 @@ class Manager {
         foreach ($this->elements as $element) {
             if ($element->wasOutput()) return true;
         }
+        
         return false;
     }
     
