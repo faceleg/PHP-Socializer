@@ -29,10 +29,10 @@ class Facebook extends AbstractElement {
         $url = getCurrentUrl();
         $width = 450;
         $showFaces = 'false';
-        $sendButton = 'true';
+        $sendButton = 'false';
         $channelUrl = '//'.$_SERVER['HTTP_HOST'].'/facebook-channel.php';
         $type = self::TYPE_HTML5;
-        $layout = 'standard';
+        $layout = 'button_count';
         $font = null;
         $colorScheme = null;
         extract($options, EXTR_IF_EXISTS);
