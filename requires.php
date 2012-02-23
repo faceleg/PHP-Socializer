@@ -1,10 +1,12 @@
 <?php
 namespace COI\Social;
 
-include('COI/Social/AbstractElement.php');
-include('COI/Social/Facebook.php');
-include('COI/Social/Twitter.php');
-include('COI/Social/LinkedIn.php');
-include('COI/Social/GooglePlus.php');
+include(__DIR__.'/COI/Social/AbstractElement.php');
+include(__DIR__.'/COI/Social/Facebook.php');
+include(__DIR__.'/COI/Social/Twitter.php');
+include(__DIR__.'/COI/Social/LinkedIn.php');
+include(__DIR__.'/COI/Social/GooglePlus.php');
+include(__DIR__.'/COI/Social/Flattr.php');
+include(__DIR__.'/COI/Social/Flattr/Category.php');
 
-include('COI/Social/Manager.php');
+include(__DIR__.'/COI/Social/Manager.php');

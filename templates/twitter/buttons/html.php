@@ -7,8 +7,8 @@
     <?php if($recommend): ?>
     data-related="<?php echo $recommend; ?>"
     <?php endif; ?>
-    <?php if($hashtags): ?>
-    data-hashtags="<?php echo $hashtags; ?>"
+    <?php if($hashtag): ?>
+    data-hashtags="<?php echo $hashtag; ?>"
     <?php endif; ?> 
     <?php if($size): ?>
     data-hashtags="<?php echo $size; ?>"
