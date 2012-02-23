@@ -12,7 +12,7 @@ function getClassName($object) {
 function getCurrentUrl() {
     $pageURL = 'http';
   
-    if ($_SERVER['HTTPS'] == 'on') {
+    if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
         $pageURL .= 's';
     }
     

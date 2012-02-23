@@ -1,29 +1,38 @@
 <?php
 namespace COI\Social;
 
-class Footer {
+class Manager {
     
     private $elements = array();
     
-    public function getElementsHtml($exclude = array()) {        
+    public function __construct($elements = array()) {
+        $this->elements = $elements;
+    }
+    
+    public function buttons($exclude = array()) {        
         $html = '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
-                $footers .= $element->button();
+                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->button()}</div>";
             }
         }
         return $html;
     }
     
-    public function getFooter() {
-        $footers = '';
+    public function scripts() {
+            
+        $scripts = array();
+        ob_start();
+        include __DIR__.'/../../templates/script.php';
+        $scripts[] = ob_get_clean();
+        
         foreach ($this->elements as $element) {
-            $footers .= $element->footer();
+            $scripts[] = $element->script();
         }
-        return $footer;
+        return implode('', $scripts);
     }
     
-     public function __set($name, $value) {
+    public function __set($name, $value) {
         echo "Setting '$name' to '$value'\n";
         $this->elements[$name] = $value;
     }
@@ -41,6 +50,14 @@ class Footer {
             ' on line ' . $trace[0]['line'],
             E_USER_NOTICE);
         return null;
+    }
+    
+    public function buttonsOutput() {
+        
+        foreach ($this->elements as $element) {
+            if ($element->wasOutput()) return true;
+        }
+        return false;
     }
     
 }
