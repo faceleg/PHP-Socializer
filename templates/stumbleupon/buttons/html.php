@@ -1,0 +1,1 @@
+<su:badge layout="<?php echo $type; ?>" location="<?php echo $url; ?>"></su:badge>
