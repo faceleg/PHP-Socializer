@@ -6,7 +6,7 @@ abstract class AbstractElement {
     private $wasOutput = false;    
     
     public function __construct() {
-        $this->templateDir = __DIR__.'/../../templates/'.strtolower(getClassName($this));
+        $this->templateDir = __DIR__.'/../../../templates/'.strtolower(getClassName($this));
     }    
 
     abstract function button($options = array());    
