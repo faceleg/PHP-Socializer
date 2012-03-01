@@ -55,9 +55,9 @@ echo $socialManager->scripts();
 Single Button
 -------------
 
-To render this button: 
+![COI Social Single Button](http://pagesofinterest.net/images/github/coi-social/watch.png "COI Social Single Button")
 
-<iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=faceleg&amp;repo=COI-Social&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
+To render a single button, use the following syntax:
 
 ```php
 <?php
