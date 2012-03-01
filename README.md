@@ -4,6 +4,8 @@ COI Social
 PHP module intended to make adding social sharing buttons more enjoyable.
 Includes Google Analytics hooks to enable tracking of share activity.
 
+Currently supports Twitter, Facebook, Google Plus, LinkedIn, StumbleUpon, GitHub and Flattr buttons.
+
 Basic Example
 -------------
 
