@@ -1,47 +1,55 @@
 <?php
 namespace COI\Social;
+use COI\Social\Flattr;
+
+define('COI\Social\Flattr\TEXT', 'text');
+define('COI\Social\Flattr\IMAGES', 'images');
+define('COI\Social\Flattr\VIDEO', 'video');
+define('COI\Social\Flattr\PEOPLE', 'people');
+define('COI\Social\Flattr\AUDIO', 'audio');
+define('COI\Social\Flattr\REST', 'rest');
 
 class Flattr extends AbstractElement {
 
     // Required
-    protected $url = null;
+    public $url = null;
 
-    protected $category = null;
+    public $category = Flattr\TEXT;
     
     // Optional 
     /**
      * Guessed if not included - or one of https://api.flattr.com/rest/v2/languages.txt
      */
-    protected $language = null;
+    public $language = null;
     /*
      * Comma separated list
      */
-    protected $tags = null;
+    public $tags = null;
     /**
      * Leave this if the large button is desired. Set to 'compact' otherwise
      */       
-    protected $button = 'default';
+    public $button = 'default';
     /**
      * Set to 1 to hide this button
      */    
-    protected $hidden = null;
+    public $hidden = null;
 
     // Required when autosubmit
     /**
      * A Flattr username. This is a required parameter for autosubmit but not for things that are already on flattr.com
      */
-    protected $uid = null;
-    protected $title = null;    
+    public $uid = null;
+    public $title = null;    
     /**
      * Will be used to describe your thing. The description should be between 5-1000 characters. All 
      * HTML is stripped except the <br\> character which will be converted into newlines (\n).
      */
-    protected $description = null;
+    public $description = null;
     
     public function __construct($options = array()) {
         
         $url = getCurrentUrl();
-        $category = Flattr\Category::TEXT;
+        $category = Flattr\TEXT;
         $language = null;
         $tags = null;      
         $button = null;
