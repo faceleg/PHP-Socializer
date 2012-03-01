@@ -4,6 +4,10 @@ PHP module intended to make adding social sharing buttons more enjoyable
 
 **Basic Example**
 
+![COI Social Basic Example](http://pagesofinterest.net/images/github/coi-social/basic.png "COI Social Basic Example")
+
+These buttons can be created with the following code:
+
 ```php
 <?php
 use COI\Social;
@@ -39,7 +43,3 @@ echo $socialManager->buttons();
 echo $socialManager->scripts();
 ?>
 ```
-
-Producing the following buttons:
-
-![COI Social Basic Example](http://pagesofinterest.net/images/github/coi-social/basic.png "COI Social Basic Example")
