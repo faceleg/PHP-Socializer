@@ -5,8 +5,13 @@ class Manager {
     
     private $elements = array();
     
-    public function __construct($elements = array()) {
+    public function __construct($elements = array(), $commonOptions = array()) {
         $this->elements = $elements;
+        foreach($this->elements as $element) {
+            foreach($commonOptions as $name => $value) {
+                $element->$name = $value;
+            }
+        }
     }
     
     public function buttons($options) {        

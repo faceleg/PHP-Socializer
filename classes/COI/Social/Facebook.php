@@ -6,23 +6,23 @@ class Facebook extends AbstractElement {
     const TYPE_HTML5 = 'html5';
     const TYPE_XBFML = 'xbfml';    
     
-    protected $appId = null;
-    protected $showFaces = null;
-    protected $url = null;
-    protected $width = null;
-    protected $sendButton = null;
-    protected $channelUrl = null;
-    protected $type = null;
+    public $appId = null;
+    public $showFaces = null;
+    public $url = null;
+    public $width = null;
+    public $sendButton = null;
+    public $channelUrl = null;
+    public $type = null;
     /**
      * standard (default), button_count, box_count
      */
-    protected $layout = null;
-    protected $font = null;
+    public $layout = null;
+    public $font = null;
     /**
      * light, dark
      * @default light
      */
-    protected $colorScheme = null;
+    public $colorScheme = null;
     
     public function __construct($options = array()) {
         $appId = null;

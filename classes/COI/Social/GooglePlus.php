@@ -3,16 +3,16 @@ namespace COI\Social;
 
 class GooglePlus extends AbstractElement {
     
-    protected $url = null;
+    public $url = null;
     /**
      * small, medium, standard (default), tall
      */
-    protected $size = null;
+    public $size = null;
     /**
      * none, bubble, inline
      * @default bubble;
      */
-    protected $annotation = null;
+    public $annotation = null;
         
     public function __construct($options = array()) {
         $url = getCurrentUrl();

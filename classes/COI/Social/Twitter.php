@@ -3,16 +3,16 @@ namespace COI\Social;
 
 class Twitter extends AbstractElement {
     
-    protected $url = null;
-    protected $username = null;
-    protected $title = null;
-    protected $recommend = null;
-    protected $hashtag = null;
-    protected $size = null;
+    public $url = null;
+    public $username = null;
+    public $title = null;
+    public $recommend = null;
+    public $hashtag = null;
+    public $size = null;
     /**
      * horizontal, vertical, none
      */
-    protected $counter = null;
+    public $counter = null;
     
     public function __construct($options = array()) {
         $url = getCurrentUrl();

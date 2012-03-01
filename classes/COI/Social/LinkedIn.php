@@ -3,12 +3,12 @@ namespace COI\Social;
 
 class LinkedIn extends AbstractElement {
     
-    protected $url = null;
+    public $url = null;
     /**
      * top, right, null (none)
      */
-    protected $count = null;
-    protected $showZero = null;
+    public $count = null;
+    public $showZero = null;
     
     public function __construct($options = array()) {
         $url = getCurrentUrl();
