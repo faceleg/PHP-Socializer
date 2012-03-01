@@ -1,4 +1,4 @@
-<script>
+<script type="text/javascript">
     // COI\Social - Facebook
     
     // Create fb-root div and append to body

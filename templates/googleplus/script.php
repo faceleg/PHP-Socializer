@@ -1,9 +1,5 @@
-<script>
+<script type="text/javascript">
     // COI\Social - Google Plus
-    
-    _ga.googlePlus = function() {
-        console.log(arguments);
-    };
     
     (function() {
         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;

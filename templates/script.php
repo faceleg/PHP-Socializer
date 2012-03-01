@@ -1,8 +1,4 @@
-<?php
-namespace COI\Social;
-
-?>
-<script>
+<script type="text/javascript">
     // Copyright 2011 Google Inc. All Rights Reserved.
     
     /**

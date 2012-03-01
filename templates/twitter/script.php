@@ -1,4 +1,4 @@
-<script>    
+<script type="text/javascript">
     // COI\Social - Twitter
     (function(){
         var twitterWidgets = document.createElement('script');
