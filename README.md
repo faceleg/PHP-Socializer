@@ -37,7 +37,8 @@ echo $socialManager->buttons();
 
 // Print JavaScript for printed buttons
 echo $socialManager->scripts();
-?>```
+?>
+```
 
 Producing the following buttons:
 
