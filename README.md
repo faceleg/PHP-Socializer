@@ -1,6 +1,10 @@
+COI Social
+----------
+
 PHP module intended to make adding social sharing buttons more enjoyable.
 
-**Basic Example**
+Basic Example
+-------------
 
 ![COI Social Basic Example](http://pagesofinterest.net/images/github/coi-social/basic.png "COI Social Basic Example")
 
