@@ -14,7 +14,13 @@ class Manager {
         }
     }
     
-    public function buttons($options) {        
+    /**
+     * Return the HTML for configured buttons
+     * @param  array  $options Overrides for preconfigured options
+     * @param  array  $exclude Names of buttons to be excluded
+     * @return String the button's HTML
+     */
+    public function buttons($options = array(), $exclude = array()) {        
         $html = '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
@@ -23,12 +29,12 @@ class Manager {
         }
         return $html;
     }
-    
+
     public function scripts() {
             
         $scripts = array();
         ob_start();
-        include __DIR__.'/../../templates/script.php';
+        include __DIR__.'/../../../templates/script.php';
         $scripts[] = ob_get_clean();
         
         foreach ($this->elements as $element) {
