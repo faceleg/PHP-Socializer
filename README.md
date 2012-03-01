@@ -52,6 +52,28 @@ echo $socialManager->scripts();
 ?>
 ```
 
+Single Button
+-------------
+
+To render this button: 
+
+<iframe src="http://markdotto.github.com/github-buttons/github-btn.html?user=faceleg&amp;repo=COI-Social&amp;type=watch&amp;count=true" allowtransparency="true" frameborder="0" scrolling="0" width="95px" height="20px"></iframe>
+
+```php
+<?php
+use COI\Social;
+
+require_once 'include.php';
+
+// Render a single button
+echo Social\GitHub(array(
+    'user' => 'faceleg',
+    'repository' => 'COI-Social',
+    'type' => Social\GitHub\Type\WATCH
+));
+?>
+```
+
 Credits
 -------
 
