@@ -1,20 +1,24 @@
 <?php
 namespace COI\Social;
-use COI\Social\Flattr;
+use COI\Social\Flattr\Type;
+use COI\Social\Flattr\Button;
 
-define('COI\Social\Flattr\TEXT', 'text');
-define('COI\Social\Flattr\IMAGES', 'images');
-define('COI\Social\Flattr\VIDEO', 'video');
-define('COI\Social\Flattr\PEOPLE', 'people');
-define('COI\Social\Flattr\AUDIO', 'audio');
-define('COI\Social\Flattr\REST', 'rest');
+define('COI\Social\Flattr\Type\TEXT', 'text');
+define('COI\Social\Flattr\Type\IMAGES', 'images');
+define('COI\Social\Flattr\Type\VIDEO', 'video');
+define('COI\Social\Flattr\Type\PEOPLE', 'people');
+define('COI\Social\Flattr\Type\AUDIO', 'audio');
+define('COI\Social\Flattr\Type\REST', 'rest');
+
+define('COI\Social\Flattr\Button\COMPACT', 'compact');
+define('COI\Social\Flattr\Button\STANDARD', 'default');
 
 class Flattr extends AbstractElement {
 
     // Required
     public $url = null;
 
-    public $category = Flattr\TEXT;
+    public $category = Type\TEXT;
     
     // Optional 
     /**
@@ -28,7 +32,7 @@ class Flattr extends AbstractElement {
     /**
      * Leave this if the large button is desired. Set to 'compact' otherwise
      */       
-    public $button = 'default';
+    public $button = Button\STANDARD;
     /**
      * Set to 1 to hide this button
      */    
@@ -45,49 +49,5 @@ class Flattr extends AbstractElement {
      * HTML is stripped except the <br\> character which will be converted into newlines (\n).
      */
     public $description = null;
-    
-    public function __construct($options = array()) {
-        
-        $url = getCurrentUrl();
-        $category = Flattr\TEXT;
-        $language = null;
-        $tags = null;      
-        $button = null;
-        $hidden = null;
-        $uid = null;
-        $title = null;    
-        $description = null;
-        
-        extract($options, EXTR_IF_EXISTS);
-
-        $this->url = $url;
-        $this->category = $category;
-        $this->language = $language;
-        $this->tags = $tags;
-        $this->button = $button;
-        $this->hidden = $hidden;
-        $this->uid = $uid;
-        $this->title = $title;    
-        $this->description = $description;
-
-        parent::__construct();
-    }
-        
-    public function button($options = array()) {
-        
-        $url = $this->url;
-        $category = $this->category;
-        $language = $this->language;
-        $tags = $this->tags;
-        $button = $this->button;
-        $hidden = $this->hidden;
-        $uid = $this->uid;
-        $title = $this->title;
-        $description = $this->description;
-
-        extract($options, EXTR_IF_EXISTS);
-
-        return $this->buttonHtml('html5', get_defined_vars());                            
-    }   
 
 }

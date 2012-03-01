@@ -20,11 +20,11 @@ class Manager {
      * @param  array  $exclude Names of buttons to be excluded
      * @return String the button's HTML
      */
-    public function buttons($options = array(), $exclude = array()) {        
+    public function render($options = array(), $exclude = array()) {        
         $html = '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
-                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->button()}</div>";
+                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$element->render()}</div>";
             }
         }
         return $html;

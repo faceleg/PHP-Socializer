@@ -1,39 +1,21 @@
 <?php
 namespace COI\Social;
+use COI\Social\GooglePlus\Size;
+use COI\Social\GooglePlus\Annotation;
+
+define('COI\Social\GooglePlus\Size\SMALL', 'small');
+define('COI\Social\GooglePlus\Size\MEDIUM', 'medium');
+define('COI\Social\GooglePlus\Size\STANDARD', 'standard');
+define('COI\Social\GooglePlus\Size\TALL', 'tall');
+
+define('COI\Social\GooglePlus\Annotation\NONE', 'none');
+define('COI\Social\GooglePlus\Annotation\BUBBLE', 'bubble');
+define('COI\Social\GooglePlus\Annotation\INLINE', 'inline');
 
 class GooglePlus extends AbstractElement {
     
     public $url = null;
-    /**
-     * small, medium, standard (default), tall
-     */
-    public $size = null;
-    /**
-     * none, bubble, inline
-     * @default bubble;
-     */
-    public $annotation = null;
-        
-    public function __construct($options = array()) {
-        $url = getCurrentUrl();
-        $size = 'standard';
-        $annotation = 'bubble';
-        extract($options, EXTR_IF_EXISTS);
-        
-        $this->url = $url;
-        $this->size = $size;
-        $this->annotation = $annotation;
-
-        parent::__construct();
-    }
-        
-    public function button($options = array()) {
-        $url = $this->url;
-        $size = $this->size;
-        $annotation = $this->annotation;
-        extract($options, EXTR_IF_EXISTS);
-
-        return $this->buttonHtml('html5', get_defined_vars());
-    }   
+    public $size = Size\STANDARD;
+    public $annotation = Annotation\BUBBLE;
 
 }

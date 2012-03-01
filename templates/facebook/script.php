@@ -8,8 +8,8 @@
     
     window.fbAsyncInit = function() {
         FB.init({
-          appId      : '<?php echo $this->appId; ?>', // App ID
-          channelUrl : '<?php echo $this->channelUrl; ?>', // Channel File
+          appId      : '<?php echo $appId; ?>', // App ID
+          channelUrl : '<?php echo $channelUrl; ?>', // Channel File
           status     : true, // check login status
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML

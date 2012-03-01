@@ -8,5 +8,6 @@ include(__DIR__.'/classes/COI/Social/LinkedIn.php');
 include(__DIR__.'/classes/COI/Social/GooglePlus.php');
 include(__DIR__.'/classes/COI/Social/Flattr.php');
 include(__DIR__.'/classes/COI/Social/StumbleUpon.php');
+include(__DIR__.'/classes/COI/Social/GitHub.php');
 
 include(__DIR__.'/classes/COI/Social/Manager.php');

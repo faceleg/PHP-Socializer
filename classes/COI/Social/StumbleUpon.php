@@ -15,29 +15,4 @@ class StumbleUpon extends AbstractElement {
     public $title = null;
     public $type = StumbleUpon\ROUNDED_COUNT;
 
-    public function __construct($options = array()) {
-        $url = getCurrentUrl();
-        $title = null;
-        $type = StumbleUpon\ROUNDED_COUNT;       
-        extract($options, EXTR_IF_EXISTS);
-        
-        $this->url = $url;
-        $this->title = $title;
-        $this->type = $type;
-
-        parent::__construct();
-    }
-        
-    public function button($options = array()) {
-        $url = $this->url;
-        $title = $this->title;
-        $type = $this->type;
-        extract($options, EXTR_IF_EXISTS);
-
-        switch ($type) {
-            default: {
-                return $this->buttonHtml('html', get_defined_vars());                            
-            }
-        }
-    }   
 }
