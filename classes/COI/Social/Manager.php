@@ -44,12 +44,10 @@ class Manager {
     }
     
     public function __set($name, $value) {
-        echo "Setting '$name' to '$value'\n";
         $this->elements[$name] = $value;
     }
     
     public function __get($name){
-        echo "Getting '$name'\n";
         if (array_key_exists($name, $this->elements)) {
             return $this->elements[$name];
         }
