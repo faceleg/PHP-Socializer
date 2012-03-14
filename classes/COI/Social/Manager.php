@@ -3,6 +3,8 @@ namespace COI\Social;
 
 class Manager {
     
+    public static $outputScripts = array();
+    
     private $elements = array();
     
     public function __construct($elements = array(), $commonOptions = array()) {
@@ -31,14 +33,20 @@ class Manager {
     }
 
     public function scripts() {
-            
+        
         $scripts = array();
-        ob_start();
-        include __DIR__.'/../../../templates/script.php';
-        $scripts[] = ob_get_clean();
+        
+        if (!self::$outputScripts) {
+            ob_start();
+            include __DIR__.'/../../../templates/script.php';
+            $scripts[] = ob_get_clean();
+        }
         
         foreach ($this->elements as $element) {
-            $scripts[] = $element->script();
+            if (!isset(self::$outputScripts[get_class($element)])) {
+                $scripts[] = $element->script();
+                self::$outputScripts[get_class($element)] = true;
+            }
         }
         return implode('', $scripts);
     }
