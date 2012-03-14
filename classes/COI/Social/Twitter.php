@@ -1,6 +1,7 @@
 <?php
 namespace COI\Social;
 use COI\Social\Twitter\Counter;
+use COI\Social\Twitter\Type;
 
 define('COI\Social\Twitter\Counter\HORIZONTAL', 'horizontal');
 define('COI\Social\Twitter\Counter\VERTICAL', 'vertical');
