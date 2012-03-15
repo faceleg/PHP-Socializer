@@ -12,7 +12,7 @@ define('COI\Social\Twitter\Type\TWEET', 'html-tweet');
 define('COI\Social\Twitter\Type\FOLLOW', 'html-follow');
 
 class Twitter extends AbstractElement {
-    
+
     public $url = null;
     public $username = null;
     public $title = null;
