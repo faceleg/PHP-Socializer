@@ -1,26 +1,26 @@
 <script type="text/javascript">
     // Copyright 2011 Google Inc. All Rights Reserved.
-    
+
     /**
      * @fileoverview A simple script to automatically track Facebook and Twitter
      * buttons using Google Analytics social tracking feature.
      * @author api.nickm@google.com (Nick Mihailovski)
      */
-    
-    
+
+
     /**
      * Namespace.
      * @type {Object}.
      */
     var _ga = _ga || {};
-    
-    
+
+
     /**
      * Ensure global _gaq Google Analytics queue has been initialized.
      * @type {Array}
      */
     var _gaq = _gaq || [];
-    
+
     /**
      * Returns the normalized tracker name configuration parameter.
      * @param {string} opt_trackerName An optional name for the tracker object.
@@ -31,8 +31,8 @@
     _ga.buildTrackerName_ = function(opt_trackerName) {
       return opt_trackerName ? opt_trackerName + '.' : '';
     };
-    
-    
+
+
     /**
      * Extracts a query parameter value from a URI.
      * @param {string} uri The URI from which to extract the parameter.
@@ -51,7 +51,7 @@
         return;
       }
       var query = decodeURI(parts[1]);
-    
+
       // Find url param.
       paramName += '=';
       var params = query.split('&');

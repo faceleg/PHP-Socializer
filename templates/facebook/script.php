@@ -1,11 +1,11 @@
 <script type="text/javascript">
     // COI\Social - Facebook
-    
+
     // Create fb-root div and append to body
     var fbRoot = document.createElement('div');
     fbRoot.id = 'fb-root';
     document.body.appendChild(fbRoot);
-    
+
     window.fbAsyncInit = function() {
         FB.init({
           appId      : '<?php echo $appId; ?>', // App ID
@@ -14,9 +14,9 @@
           cookie     : true, // enable cookies to allow the server to access the session
           xfbml      : true  // parse XFBML
         });
-    
+
         // Additional initialization code here
-        
+
         /**
          * @link http://code.google.com/p/analytics-api-samples/source/browse/trunk/src/tracking/javascript/v5/social/ga_social_tracking.js
          * Tracks Facebook likes, unlikes and sends by suscribing to the Facebook
@@ -46,7 +46,7 @@
           } catch (e) {}
         }();
     };
-    
+
     // Load the SDK Asynchronously
     (function(d){
      var js, id = "facebook-jssdk"; if (d.getElementById(id)) {return;}

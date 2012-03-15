@@ -1,6 +1,5 @@
 <script type="text/javascript">
     // COI\Social - Google Plus
-    
     (function() {
         var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
         po.src = 'https://apis.google.com/js/plusone.js';

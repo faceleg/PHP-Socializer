@@ -1,5 +1,5 @@
 <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
-<script type="text/javascript">    
+<script type="text/javascript">
     // COI\Social - Linked In
     (function(){
         var trackerName = _ga.buildTrackerName_();

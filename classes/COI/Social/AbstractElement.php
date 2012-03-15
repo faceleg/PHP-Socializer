@@ -5,6 +5,11 @@ abstract class AbstractElement {
         
     private $wasOutput = false;    
     
+    /**
+     * Construct an abstract element with the given options
+     * Sets the url property to the current url for convenience
+     * @param array $options Array of key => value options to use with this element
+     */
     public function __construct(array $options = array()) { 
         // Most buttons take a url, add it for convenience
         $options = array_merge(array(

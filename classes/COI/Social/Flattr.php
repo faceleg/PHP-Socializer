@@ -19,8 +19,8 @@ class Flattr extends AbstractElement {
     public $url = null;
 
     public $category = Type\TEXT;
-    
-    // Optional 
+
+    // Optional
     /**
      * Guessed if not included - or one of https://api.flattr.com/rest/v2/languages.txt
      */
@@ -31,11 +31,11 @@ class Flattr extends AbstractElement {
     public $tags = null;
     /**
      * Leave this if the large button is desired. Set to 'compact' otherwise
-     */       
+     */
     public $button = Button\STANDARD;
     /**
      * Set to 1 to hide this button
-     */    
+     */
     public $hidden = null;
 
     // Required when autosubmit
@@ -43,9 +43,9 @@ class Flattr extends AbstractElement {
      * A Flattr username. This is a required parameter for autosubmit but not for things that are already on flattr.com
      */
     public $uid = null;
-    public $title = null;    
+    public $title = null;
     /**
-     * Will be used to describe your thing. The description should be between 5-1000 characters. All 
+     * Will be used to describe your thing. The description should be between 5-1000 characters. All
      * HTML is stripped except the <br\> character which will be converted into newlines (\n).
      */
     public $description = null;
