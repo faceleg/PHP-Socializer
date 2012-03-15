@@ -11,14 +11,14 @@ define('COI\Social\GitHub\Size\LARGE', 'large');
 define('COI\Social\GitHub\Size\COMPACT', null);
 
 class GitHub extends AbstractElement {
-    
-    public $user = null;
+
+    public $username = null;
     public $repository = null;
     public $type = Type\FOLLOW;
     public $count = true;
     public $size = Size\COMPACT;
-    
+
     public $width = 95;
-    public $height = 20;    
+    public $height = 20;
 
 }
