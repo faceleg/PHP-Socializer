@@ -2,15 +2,15 @@
 namespace COI\Social;
 
 abstract class AbstractElement {
-        
-    private $wasOutput = false;    
-    
+
+    private $wasOutput = false;
+
     /**
      * Construct an abstract element with the given options
      * Sets the url property to the current url for convenience
      * @param array $options Array of key => value options to use with this element
      */
-    public function __construct(array $options = array()) { 
+    public function __construct(array $options = array()) {
         // Most buttons take a url, add it for convenience
         $options = array_merge(array(
             'url' => getCurrentUrl()
@@ -20,7 +20,7 @@ abstract class AbstractElement {
         }
         $this->templateDir = __DIR__.'/../../../templates/'.strtolower(getClassName($this));
     }
-    
+
     public function getView() {
         return 'html';
     }
@@ -33,7 +33,7 @@ abstract class AbstractElement {
     public function script() {
         return $this->template('script', null, get_object_vars($this));
     }
-    
+
     private function template($name, $subDir = null, $parameters = array()) {
         if (!is_file($this->templateDir."/{$subDir}/{$name}.php")) {
             return '';
@@ -43,11 +43,11 @@ abstract class AbstractElement {
         include $this->templateDir."/{$subDir}/{$name}.php";
         return ob_get_clean();
     }
-        
+
     public function wasOutput() {
         return $this->wasOutput;
     }
-    
+
     public function __toString() {
         $html = $this->render();
         $html .= $this->script();
