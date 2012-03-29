@@ -11,6 +11,10 @@ class Manager {
      * @var boolean|integer false if no fadein or timeout before fade in
      */
     private $fadeIn = false;
+    /**
+     * @var string|integer fade in animation speed. Defaults to 'slow'
+     */
+    private $fadeInSpeed = 'slow';
 
     public function __construct($elements = array(), $commonOptions = array()) {
         $this->elements = $elements;
@@ -58,8 +62,21 @@ class Manager {
         return implode('', $scripts);
     }
 
+    /**
+     * Turn fade in off (default) or enable it & set timeout
+     * @param boolean|integer $fadeIn false to disable fade in, an integer to enable it & set timeout in milliseconds
+     */
     public function setFadeIn($fadeIn) {
         $this->fadeIn = $fadeIn;
+        return $this;
+    }
+
+    /**
+     * Set fade in animation speed
+     * @param integer|string $speed fade in animation speed
+     */
+    public function setFadeInSpeed($speed) {
+        $this->fadeInSpeed = $speed;
         return $this;
     }
 

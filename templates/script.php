@@ -1,7 +1,7 @@
 <script type="text/javascript">
     <?php if ($this->fadeIn): ?>
     window.setTimeout(function() {
-        $('.coi-social-button').animate({ opacity: 1 });
+        $('.coi-social-button').animate({ opacity: 1 }, '<?php echo $this->fadeInSpeed; ?>');
     }, "<?php echo $this->fadeIn; ?>");
     <?php endif; ?>
     // Copyright 2011 Google Inc. All Rights Reserved.
