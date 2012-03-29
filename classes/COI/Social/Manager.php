@@ -7,6 +7,11 @@ class Manager {
 
     private $elements = array();
 
+    /**
+     * @var boolean|integer false if no fadein or timeout before fade in
+     */
+    private $fadeIn = false;
+
     public function __construct($elements = array(), $commonOptions = array()) {
         $this->elements = $elements;
         foreach($this->elements as $element) {
@@ -24,10 +29,11 @@ class Manager {
      */
     public function render($options = array(), $exclude = array()) {
         $html = '';
+        $fadeIn = $this->fadeIn ? 'style="opacity:0;"' : '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
                 $button = $element->render($options);
-                $html .= "<div class='coi-social-button coi-social-button-{$name}'>{$button}</div>";
+                $html .= "<div class='coi-social-button coi-social-button-{$name}' {$fadeIn}>{$button}</div>";
             }
         }
         return $html;
@@ -50,6 +56,11 @@ class Manager {
             }
         }
         return implode('', $scripts);
+    }
+
+    public function setFadeIn($fadeIn) {
+        $this->fadeIn = $fadeIn;
+        return $this;
     }
 
     public function __set($name, $value) {
