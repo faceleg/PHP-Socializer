@@ -1,12 +1,12 @@
 <script type="text/javascript">
     // COI\Social - StumbleUpon
     (function(){
-        var li = document.createElement('script'); 
-        li.type = 'text/javascript'; 
-        li.async = true; 
-        li.src = window.location.protocol + '//platform.stumbleupon.com/1/widgets.js'; 
-        var s = document.getElementsByTagName('script')[0]; 
-        s.parentNode.insertBefore(li, s); 
+        var li = document.createElement('script');
+        li.type = 'text/javascript';
+        li.async = true;
+        li.src = window.location.protocol + '//platform.stumbleupon.com/1/widgets.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(li, s);
 
         // /**
         //  * Tracks everytime a user clicks on a tweet button from Twitter.
@@ -35,11 +35,11 @@
         //     }
         //   } catch (e) {}
         // };
-    
-    
+
+
         // // Setup a callback to track once the script loads.
         // twitterWidgets.onload = _ga.trackTwitter;
-    
+
         // document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
 </script>
