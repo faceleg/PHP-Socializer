@@ -1,4 +1,4 @@
-COI Social
+PHP Socializer
 ----------
 
 PHP module intended to make adding social sharing buttons more enjoyable.
@@ -9,7 +9,7 @@ Currently supports Twitter, Facebook, Google Plus, LinkedIn, StumbleUpon, GitHub
 Basic Example
 -------------
 
-![COI Social Basic Example](http://pagesofinterest.net/images/github/coi-social/basic.png "COI Social Basic Example")
+![PHP Socializer Basic Example](http://pagesofinterest.net/images/github/coi-social/basic.png "PHP Socializer Basic Example")
 
 These buttons can be created with the following code:
 
@@ -57,7 +57,7 @@ echo $socialManager->scripts();
 Single Button
 -------------
 
-![COI Social Single Button](http://pagesofinterest.net/images/github/coi-social/watch.png "COI Social Single Button")
+![PHP Socializer Single Button](http://pagesofinterest.net/images/github/coi-social/watch.png "PHP Socializer Single Button")
 
 To render a single button, use the following syntax:
 
