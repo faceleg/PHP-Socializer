@@ -5,12 +5,22 @@ abstract class AbstractElement {
 
     private $wasOutput = false;
 
+    public $name = null;
+
+    /**
+     * @var boolean|integer False for now fade, a duration in milliseconds to have this element faded in when loaded
+     */
+    public $fadeIn = false;
+
     /**
      * Construct an abstract element with the given options
      * Sets the url property to the current url for convenience
      * @param array $options Array of key => value options to use with this element
      */
     public function __construct(array $options = array()) {
+        // Set the name of this button
+        $this->name = strtolower(substr(get_called_class(), strrpos(get_called_class(), '\\')+1));
+
         // Most buttons take a url, add it for convenience
         $options = array_merge(array(
             'url' => getCurrentUrl()
@@ -27,20 +37,25 @@ abstract class AbstractElement {
 
     public function render(array $options = array()) {
         $this->wasOutput = true;
-        return $this->template($this->getView(), 'buttons', array_merge(get_object_vars($this), $options));
+
+        $options = array_merge(get_object_vars($this));
+        $fadeIn = isset($options['fadeIn']) && $options['fadeIn'] ? 'style="opacity:0;"' : '';
+
+        $html = $this->template($this->getView(), 'buttons', $options);
+        return "<div class='coi-social-button coi-social-button-{$this->name}' {$fadeIn}>{$html}</div>";
     }
 
     public function script() {
-        return $this->template('script', null, get_object_vars($this));
+        return $this->template('script', null, array_merge(get_object_vars($this)));
     }
 
-    private function template($name, $subDir = null, $parameters = array()) {
-        if (!is_file($this->templateDir."/{$subDir}/{$name}.php")) {
+    private function template($templateName, $subDir = null, $parameters = array()) {
+        if (!is_file($this->templateDir."/{$subDir}/{$templateName}.php")) {
             return '';
         }
         extract($parameters);
         ob_start();
-        include $this->templateDir."/{$subDir}/{$name}.php";
+        include $this->templateDir."/{$subDir}/{$templateName}.php";
         return ob_get_clean();
     }
 
