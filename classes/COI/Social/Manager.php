@@ -33,11 +33,9 @@ class Manager {
      */
     public function render($options = array(), $exclude = array()) {
         $html = '';
-        $fadeIn = $this->fadeIn ? 'style="opacity:0;"' : '';
         foreach ($this->elements as $name => $element) {
             if (!$exclude || !in_array($name, $exclude)) {
-                $button = $element->render($options);
-                $html .= "<div class='coi-social-button coi-social-button-{$name}' {$fadeIn}>{$button}</div>";
+                $html .= $element->render($options);
             }
         }
         return $html;
@@ -60,24 +58,6 @@ class Manager {
             }
         }
         return implode('', $scripts);
-    }
-
-    /**
-     * Turn fade in off (default) or enable it & set timeout
-     * @param boolean|integer $fadeIn false to disable fade in, an integer to enable it & set timeout in milliseconds
-     */
-    public function setFadeIn($fadeIn) {
-        $this->fadeIn = $fadeIn;
-        return $this;
-    }
-
-    /**
-     * Set fade in animation speed
-     * @param integer|string $speed fade in animation speed
-     */
-    public function setFadeInSpeed($speed) {
-        $this->fadeInSpeed = $speed;
-        return $this;
     }
 
     public function __set($name, $value) {
