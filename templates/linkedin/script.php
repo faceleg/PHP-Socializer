@@ -6,7 +6,17 @@
         li.src = '//platform.linkedin.com/in.js';
         li.onload = function() {
             <?php if ($this->fadeIn): ?>
-            fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
+            var awaitRender = function(element) {
+                if (element.getElementsByClassName('IN-widget').length) {
+                    fadeIn([element], <?php echo $this->fadeIn; ?>);
+                } else {
+                    window.setTimeout(function() { awaitRender(element) }, 100);
+                }
+            };
+            var buttons = document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>');
+            for(var i = 0; i < buttons.length; i++) {
+                awaitRender(buttons[i]);
+            }
             <?php endif; ?>
         }
         var s = document.getElementsByTagName('script')[0];

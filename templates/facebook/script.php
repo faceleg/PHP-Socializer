@@ -49,7 +49,7 @@
 
         <?php if ($this->fadeIn): ?>
         var awaitRender = function(element) {
-            if (element.firstChild.getElementsByClassName('fb_iframe_widget').length) {
+            if (element.getElementsByClassName('fb_iframe_widget').length) {
                 fadeIn([element], <?php echo $this->fadeIn; ?>);
             } else {
                 window.setTimeout(function() { awaitRender(element) }, 100);

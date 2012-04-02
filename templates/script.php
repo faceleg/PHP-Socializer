@@ -1,6 +1,7 @@
 <script type="text/javascript">
 
     var fadeIn = function(elements, time) {
+
         var startOpacity = 0;
         var steps = 1 / 0.02;
 
