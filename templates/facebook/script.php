@@ -1,22 +1,22 @@
 <script type="text/javascript">
     // COI\Social - Facebook
 
-    // Create fb-root div and append to body
     var fbRoot = document.createElement('div');
     fbRoot.id = 'fb-root';
     document.body.appendChild(fbRoot);
 
     window.fbAsyncInit = function() {
-
-        FB.init({
-          appId      : '<?php echo $appId; ?>', // App ID
-          channelUrl : '<?php echo $channelUrl; ?>', // Channel File
-          status     : true, // check login status
-          cookie     : true, // enable cookies to allow the server to access the session
-          xfbml      : true  // parse XFBML
+         FB.init({
+            appId: '<?php echo $appId; ?>',
+            status: true,
+            cookie: true,
+            xfbml: true
         });
-
-        // Additional initialization code here
+        FB.XFBML.parse(document, function() {
+            <?php if ($this->fadeIn): ?>
+            fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
+            <?php endif; ?>
+        });
 
         /**
          * @link http://code.google.com/p/analytics-api-samples/source/browse/trunk/src/tracking/javascript/v5/social/ga_social_tracking.js
@@ -46,34 +46,12 @@
             }
           } catch (e) {}
         }();
-
-        <?php if ($this->fadeIn): ?>
-        var awaitRender = function(element) {
-            if (element.getElementsByClassName('fb_iframe_widget').length) {
-                fadeIn([element], <?php echo $this->fadeIn; ?>);
-            } else {
-                window.setTimeout(function() { awaitRender(element) }, 100);
-            }
-        };
-        var buttons = document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>');
-        for(var i = 0; i < buttons.length; i++) {
-            awaitRender(buttons[i]);
-        }
-        <?php endif; ?>
-
-        <?php if ($this->fadeIn): ?>
-        fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
-        <?php endif; ?>
     };
 
-    // Load the SDK Asynchronously
-    (function(d){
-     var js, id = "facebook-jssdk";
-     if (d.getElementById(id)) { return; }
-     js = d.createElement("script");
-     js.id = id;
-     js.async = true;
-     js.src = "//connect.facebook.net/en_US/all.js";
-     d.getElementsByTagName("head")[0].appendChild(js);
-    }(document));
+    (function() {
+         var e = document.createElement('script');
+         e.async = true;
+         e.src = document.location.protocol +  '//connect.facebook.net/en_US/all.js';
+         document.getElementById('fb-root').appendChild(e);
+    }());
 </script>
