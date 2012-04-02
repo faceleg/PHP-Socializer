@@ -8,10 +8,16 @@
             var s = document.createElement("script");
             s.type = "text/javascript";
             s.async = true;
-            if (window.location.protocol == "https:")
+            if (window.location.protocol == "https:") {
                 s.src = "https://assets.pinterest.com/js/pinit.js";
-            else
+            } else {
                 s.src = "http://assets.pinterest.com/js/pinit.js";
+            }
+            s.onload = function() {
+                <?php if ($this->fadeIn): ?>
+                fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
+                <?php endif; ?>
+            }
             var x = document.getElementsByTagName("script")[0];
             x.parentNode.insertBefore(s, x);
         }

@@ -1,9 +1,23 @@
 <script type="text/javascript">
-    <?php if ($this->fadeIn): ?>
-    window.setTimeout(function() {
-        $('.coi-social-button').animate({ opacity: 1 }, '<?php echo $this->fadeInSpeed; ?>');
-    }, "<?php echo $this->fadeIn; ?>");
-    <?php endif; ?>
+
+    var fadeIn = function(elements, time) {
+        var startOpacity = 0;
+        var steps = 1 / 0.02;
+
+        for (var i = 0; i < elements.length; i++) {
+            (function go(element) {
+                element.style.opacity = +(element.style.opacity) + 0.02;
+
+                // for IE
+                element.style.filter = 'alpha(opacity=' + element.style.opacity * 100 + ')';
+
+                if(element.style.opacity < 1) {
+                    window.setTimeout(function() { go(element); }, time / steps);
+                }
+            })(elements[i]);
+        }
+    }
+
     // Copyright 2011 Google Inc. All Rights Reserved.
 
     /**

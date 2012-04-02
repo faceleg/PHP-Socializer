@@ -7,6 +7,7 @@
     document.body.appendChild(fbRoot);
 
     window.fbAsyncInit = function() {
+
         FB.init({
           appId      : '<?php echo $appId; ?>', // App ID
           channelUrl : '<?php echo $channelUrl; ?>', // Channel File
@@ -45,12 +46,33 @@
             }
           } catch (e) {}
         }();
+
+        <?php if ($this->fadeIn): ?>
+        var awaitRender = function(element) {
+            if (element.firstChild.getElementsByClassName('fb_iframe_widget').length) {
+                fadeIn([element], <?php echo $this->fadeIn; ?>);
+            } else {
+                window.setTimeout(function() { awaitRender(element) }, 100);
+            }
+        };
+        var buttons = document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>');
+        for(var i = 0; i < buttons.length; i++) {
+            awaitRender(buttons[i]);
+        }
+        <?php endif; ?>
+
+        <?php if ($this->fadeIn): ?>
+        fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
+        <?php endif; ?>
     };
 
     // Load the SDK Asynchronously
     (function(d){
-     var js, id = "facebook-jssdk"; if (d.getElementById(id)) {return;}
-     js = d.createElement("script"); js.id = id; js.async = true;
+     var js, id = "facebook-jssdk";
+     if (d.getElementById(id)) { return; }
+     js = d.createElement("script");
+     js.id = id;
+     js.async = true;
      js.src = "//connect.facebook.net/en_US/all.js";
      d.getElementsByTagName("head")[0].appendChild(js);
     }(document));

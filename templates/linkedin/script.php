@@ -1,5 +1,17 @@
-<script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
 <script type="text/javascript">
+    (function() {
+        var li = document.createElement('script');
+        li.type = 'text/javascript';
+        li.async = true;
+        li.src = '//platform.linkedin.com/in.js';
+        li.onload = function() {
+            <?php if ($this->fadeIn): ?>
+            fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), <?php echo $this->fadeIn; ?>);
+            <?php endif; ?>
+        }
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(li, s);
+    })();
     // COI\Social - Linked In
     (function(){
         var trackerName = _ga.buildTrackerName_();
