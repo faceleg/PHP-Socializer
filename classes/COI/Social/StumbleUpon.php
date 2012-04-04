@@ -10,7 +10,7 @@ define('COI\Social\StumbleUpon\LOGO_LARGE', 5);
 define('COI\Social\StumbleUpon\LOGO_SMALL', 6);
 
 class StumbleUpon extends AbstractElement {
-    
+
     public $url = null;
     public $title = null;
     public $type = StumbleUpon\ROUNDED_COUNT;

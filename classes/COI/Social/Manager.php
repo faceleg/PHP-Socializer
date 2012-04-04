@@ -47,7 +47,7 @@ class Manager {
 
         if (!self::$outputScripts) {
             ob_start();
-            include __DIR__.'/../../../templates/script.php';
+            include __DIR__.'/../../../templates/script.js';
             $scripts[] = ob_get_clean();
         }
 
@@ -57,7 +57,8 @@ class Manager {
                 self::$outputScripts[get_class($element)] = true;
             }
         }
-        return implode('', $scripts);
+        $scripts = implode('', $scripts);
+        return "<script type='text/javascript'>{$scripts}</script>";
     }
 
     public function __set($name, $value) {
