@@ -46,16 +46,16 @@ abstract class AbstractElement {
     }
 
     public function script() {
-        return $this->template('script', null, array_merge(get_object_vars($this)));
+        return $this->template('script', null, array_merge(get_object_vars($this)), 'js');
     }
 
-    private function template($templateName, $subDir = null, $parameters = array()) {
-        if (!is_file($this->templateDir."/{$subDir}/{$templateName}.php")) {
+    private function template($templateName, $subDir = null, $parameters = array(), $extension = 'php') {
+        if (!is_file($this->templateDir."/{$subDir}/{$templateName}.{$extension}")) {
             return '';
         }
         extract($parameters);
         ob_start();
-        include $this->templateDir."/{$subDir}/{$templateName}.php";
+        include $this->templateDir."/{$subDir}/{$templateName}.{$extension}";
         return ob_get_clean();
     }
 
