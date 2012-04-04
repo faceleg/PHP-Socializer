@@ -1,7 +1,7 @@
 _socialQueue.push({
     url: '//platform.linkedin.com/in.js',
     id: '<?php echo $this->name; ?>',
-    onload: function(fadeIn, awaitRender) {
+    onload: function(f) {
 
         // Google Analytics tracking
         // @todo check if Linked in callbacks are working & update this
@@ -24,9 +24,13 @@ _socialQueue.push({
 
         // Fade button in if desired
         if ('<?php echo $this->fadeIn ?>') {
-            awaitRender(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), function(element) {
+            f.awaitRender({
+                buttons: document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'),
+                duration: '<?php echo $this->fadeIn; ?>',
+                isRendered: function(element) {
                     return element.getElementsByClassName('IN-widget').length;
-                }, '<?php echo $this->fadeIn; ?>');
+                }
+            });
         }
     }
 });

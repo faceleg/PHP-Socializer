@@ -77,44 +77,60 @@ _socialQueue = [];
 (function(w, d) {
 
     /**
-     * Simple fade in effect
-     * @param  {Array} elements An array of elements to fade in
-     * @param  {Integer} time Total animation time
-     */
-    var fadeIn = function(elements, time) {
-        var startOpacity = 0, steps = 1 / 0.02;
-        var step = function step(element) {
-            element.style.opacity = +(element.style.opacity) + 0.02;
-
-            // for IE
-            element.style.filter = 'alpha(opacity=' + element.style.opacity * 100 + ')';
-
-            if(element.style.opacity < 1) {
-                window.setTimeout(function() { step(element); }, time / steps);
-            }
-        };
-        for (var i = 0; i < elements.length; i++) {
-            step(elements[i]);
-        }
-    };
-
-    var awaitRender = function(buttons, rendered, duration) {
-        var awaitRenderButton = function(b, r, d) {
-            if (r(b)) {
-                fadeIn([b], d);
-            } else {
-                window.setTimeout(function() { awaitRenderButton(b, r, d); }, 200);
-            }
-        };
-        for(var i = 0; i < buttons.length; i++) {
-            awaitRenderButton(buttons[i], rendered, duration);
-        }
-    };
-
-    /**
      * Begin loading social assets
      */
     var go = function() {
+
+        var f = {
+            /**
+             * Simple fade in effect
+             * @param  {Array} elements An array of elements to fade in
+             * @param  {Integer} time Total animation time
+             */
+            fadeIn: function(elements, time) {
+                var startOpacity = 0, steps = 1 / 0.02;
+                var step = function step(element) {
+                    element.style.opacity = +(element.style.opacity) + 0.02;
+
+                    // for IE
+                    element.style.filter = 'alpha(opacity=' + element.style.opacity * 100 + ')';
+
+                    if(element.style.opacity < 1) {
+                        window.setTimeout(function() { step(element); }, time / steps);
+                    }
+                };
+                for (var i = 0; i < elements.length; i++) {
+                    step(elements[i]);
+                }
+            },
+            iframeOnload: function(fr, b, d) {
+                fr.onload = function() {
+                    f.fadeIn([b], d);
+                };
+                var src = fr.src;
+                fr.src = '';
+                fr.src = src;
+            },
+            awaitRenderButton: function(b, r, d, m) {
+                if (!r(b)) { // Button not rendered yet, wait
+                    window.setTimeout(function() {
+                        f.awaitRenderButton(b, r, d, m);
+                    }, 100);
+                    return;
+                }
+                // Button rendered
+                if (typeof m !== 'undefined') { // An alternative rendered function was provided
+                    m(b, d);
+                } else { // Fade in
+                    f.fadeIn([b], d);
+                }
+            },
+            awaitRender: function(o) {
+                for(var i = 0; i < o.buttons.length; i++) {
+                    f.awaitRenderButton(o.buttons[i], o.isRendered, o.duration, o.renderedMethod);
+                }
+            }
+        };
 
         var fjs = document.getElementsByTagName('script')[0];
 
@@ -122,14 +138,14 @@ _socialQueue = [];
          * Load the social object
          * @param  {Object} s A social object to be loaded
          */
-        var load = function(s) {
+        var load = function(s, f) {
             // Ensure script isn't loaded yet
             if (d.getElementById(s.id)) {
                 return;
             }
 
             if (s.preload) {
-                s.preload(fadeIn);
+                s.preload(f);
             }
 
             if (s.url) {
@@ -138,10 +154,10 @@ _socialQueue = [];
                 var js = d.createElement('script');
                 js.src = s.url;
                 js.id = '_social' + s.id;
-                js.async = 'true';
-                console.log(js);
+                js.async = true;
+
                 if (s.onload) { // Attach the onload function if present
-                    js.onload = function() { s.onload(fadeIn, awaitRender); };
+                    js.onload = function() { s.onload(f); };
                 }
 
                 fjs.parentNode.insertBefore(js, fjs);
@@ -150,7 +166,7 @@ _socialQueue = [];
 
         // Process queue
         for (var i = 0; i < _socialQueue.length; i++) {
-            load(_socialQueue[i]);
+            load(_socialQueue[i], f);
         }
     };
 

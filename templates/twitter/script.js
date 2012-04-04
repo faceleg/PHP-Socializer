@@ -1,7 +1,7 @@
 _socialQueue.push({
     url: 'http://platform.twitter.com/widgets.js',
     id: '<?php echo $this->name; ?>',
-    onload: function(fadeIn) {
+    onload: function(f) {
 
         // Google Analytics tracking
 
@@ -39,7 +39,7 @@ _socialQueue.push({
             var body = document.getElementsByTagName('body')[0];
             var twitterFadeInterval = window.setInterval(function() {
                 if (body.getAttribute('data-twttr-rendered')) {
-                    fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), '<?php echo $this->fadeIn; ?>');
+                    f.fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), '<?php echo $this->fadeIn; ?>');
                     window.clearInterval(twitterFadeInterval);
                 }
             }, 100);

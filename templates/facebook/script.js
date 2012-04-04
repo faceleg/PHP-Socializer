@@ -45,10 +45,10 @@ _socialQueue.push({
             }();
         };
     },
-    onload: function(fadeIn) {
+    onload: function(f) {
         FB.XFBML.parse(document, function() {
             if ('<?php echo $this->fadeIn; ?>') {
-                fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), '<?php echo $this->fadeIn; ?>');
+                f.fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), '<?php echo $this->fadeIn; ?>');
             }
         });
     }

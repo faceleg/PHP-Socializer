@@ -1,7 +1,10 @@
 if ('<?php echo $this->fadeIn ?>') {
     _socialQueue.push({
-        preload: function(fadeIn) {
-            fadeIn(document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'), '<?php echo $this->fadeIn; ?>');
+        preload: function(f) {
+            var buttons = document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>');
+            for (var i = 0; i < buttons.length; i++) {
+                f.iframeOnload(buttons[i].getElementsByTagName('IFRAME')[0], buttons[i], '<?php echo $this->fadeIn; ?>');
+            }
         }
     });
 }
