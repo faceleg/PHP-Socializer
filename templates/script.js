@@ -88,19 +88,33 @@ _socialQueue = [];
              * @param  {Integer} time Total animation time
              */
             fadeIn: function(elements, time) {
-                var startOpacity = 0, steps = 1 / 0.02;
-                var step = function step(element) {
-                    element.style.opacity = +(element.style.opacity) + 0.02;
-
-                    // for IE
-                    element.style.filter = 'alpha(opacity=' + element.style.opacity * 100 + ')';
-
-                    if(element.style.opacity < 1) {
-                        window.setTimeout(function() { step(element); }, time / steps);
+                // If the browser supports CSS transitions, use them
+                var transition = false,
+                    transitionNames = ['MozTransition', 'webkitTransition', 'OTransition'];
+                for (var i = 0; i < transitionNames.length; i++) {
+                    if (typeof elements[0].style[transitionNames[i]] !== 'undefined') {
+                        transition = transitionNames[i];
+                        break;
                     }
-                };
-                for (var i = 0; i < elements.length; i++) {
-                    step(elements[i]);
+                }
+
+                for (i = 0; i < elements.length; i++) {
+                    if (transition) {
+                        elements[i].style[transition] = 'opacity ' + time + 'ms ease-in-out';
+                        elements[i].style.opacity = 1;
+                    } else {
+                        var startOpacity = 0, steps = 1 / 0.02;
+                        (function step(element) {
+                            element.style.opacity = +(element.style.opacity) + 0.02;
+
+                            // for IE
+                            element.style.filter = 'alpha(opacity=' + element.style.opacity * 100 + ')';
+
+                            if(element.style.opacity < 1) {
+                                window.setTimeout(function() { step(element); }, time / steps);
+                            }
+                        })(elements[i]);
+                    }
                 }
             },
             iframeOnload: function(fr, b, d) {
