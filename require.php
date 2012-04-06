@@ -12,3 +12,5 @@ include(__DIR__.'/classes/COI/Social/GitHub.php');
 include(__DIR__.'/classes/COI/Social/Pinterest.php');
 
 include(__DIR__.'/classes/COI/Social/Manager.php');
+include(__DIR__.'/classes/COI/Social/Compressor.php');
+include(__DIR__.'/classes/COI/Social/Cache.php');
