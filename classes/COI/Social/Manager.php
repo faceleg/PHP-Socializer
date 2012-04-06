@@ -1,21 +1,24 @@
 <?php
 namespace COI\Social;
+use Exception;
 
 class Manager {
 
     public static $outputScripts = array();
-
-    private $elements = array();
+    public static $managers = array();
+    private static $combining = false;
+    public $elements = array();
 
     /**
-     * @var boolean|integer false if no fadein or timeout before fade in
+     * @var String type of compression to use
      */
-    private $fadeIn = false;
-    /**
-     * @var string|integer fade in animation speed. Defaults to 'slow'
-     */
-    private $fadeInSpeed = 'slow';
+    public $compression = null;
 
+    /**
+     * Constructor
+     * @param Array $elements An array of Social elements
+     * @param Array $commonOptions An array of common options
+     */
     public function __construct($elements = array(), $commonOptions = array()) {
         $this->elements = $elements;
         foreach($this->elements as $element) {
@@ -23,6 +26,8 @@ class Manager {
                 $element->$name = $value;
             }
         }
+        // Add this instance to the shared collection
+        self::$managers[] = $this;
     }
 
     /**
@@ -41,24 +46,71 @@ class Manager {
         return $html;
     }
 
-    public function scripts() {
-
-        $scripts = array();
-
-        if (!self::$outputScripts) {
-            ob_start();
-            include __DIR__.'/../../../templates/script.js';
-            $scripts[] = ob_get_clean();
+    /**
+     *
+     * @return String JavaScript common to all social elements
+     */
+    private static function commonJS() {
+        if (self::$outputScripts) {
+            return null;
         }
+        ob_start();
+        include __DIR__.'/../../../templates/script.js';
+        return ob_get_clean();
+    }
+
+    /**
+     * Prepare and return JavaScript required for this instance's social elements
+     * @param  Array $options Optional array of JavaScript options
+     * @return String
+     */
+    public function javaScript($options) {
+        $js[] = self::commonJS();
 
         foreach ($this->elements as $element) {
             if (!isset(self::$outputScripts[get_class($element)])) {
-                $scripts[] = $element->script();
+                $js[] = $element->script();
                 self::$outputScripts[get_class($element)] = true;
             }
         }
-        $scripts = implode('', $scripts);
-        return "<script type='text/javascript'>{$scripts}</script>";
+        $js = implode('', $js);
+
+        if (self::$combining) {
+            return $js;
+        }
+
+        return self::cache(self::compress($js, $options), $options);
+    }
+
+    public static function combinedJavaScript($options = array()) {
+
+        self::$combining = true;
+
+        $js = '';
+
+        foreach (self::$managers as $manager) {
+            $js .= $manager->javaScript($options);
+        }
+
+        self::$combining = false;
+        return self::cache(self::compress($js, $options), $options);
+    }
+
+    public function compress($js, $options) {
+        if (isset($options['compression']) && $options['compression']) {
+            $compressor = new Compressor($js, $options['compression']);
+            $js = $compressor->compress();
+        }
+        return $js;
+    }
+
+    public function cache($js, $options) {
+         if (isset($options['cacheDirectory']) && $options['cacheDirectory']) {
+            $cache = new Cache($js, $options['cacheDirectory'], $options);
+            return $cache->output();
+        } else {
+            return '<script type="text/javascript">'.$js.'</script>';
+        }
     }
 
     public function __set($name, $value) {
