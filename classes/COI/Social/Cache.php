@@ -18,7 +18,7 @@ class Cache {
     /**
      * @var String The public path to the JavaScript file
      */
-    public $publicPath;
+    public $publicCacheDirectory;
     /**
      * @var String Identifying string, ensuring that changing options will result in a busted cache
      */
@@ -39,11 +39,11 @@ class Cache {
             $this->signature = isset($options['compression']) ? $options['compression'] : 'raw';
         }
 
-        if (isset($options['publicPath']) && $options['publicPath']) {
-            $this->publicPath = $options['publicPath'];
+        if (isset($options['publicCacheDirectory']) && $options['publicCacheDirectory']) {
+            $this->publicCacheDirectory = $options['publicCacheDirectory'];
         } else {
             // Guess the public path if not explicitly set
-            $this->publicPath = str_replace(realpath('./'), '', realpath($this->cacheDirectory));
+            $this->publicCacheDirectory = str_replace(realpath('./'), '', realpath($this->cacheDirectory));
         }
     }
 
@@ -59,8 +59,8 @@ class Cache {
             }
             file_put_contents($filename, $this->js);
         }
-        $publicPath = rtrim($this->publicPath, '/').'/'.basename($filename);
-        return "<script type='text/javascript' src='{$publicPath}'></script>";
+        $publicCacheDirectory = rtrim($this->publicCacheDirectory, '/').'/'.basename($filename);
+        return "<script type='text/javascript' src='{$publicCacheDirectory}'></script>";
     }
 }
 
