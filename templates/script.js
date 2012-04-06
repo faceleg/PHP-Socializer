@@ -100,7 +100,7 @@ _socialQueue = [];
 
                 for (i = 0; i < elements.length; i++) {
                     if (transition) {
-                        elements[i].style[transition] = 'opacity ' + time + 'ms ease-in-out';
+                        elements[i].style[transition] = 'opacity ' + time + 'ms ease-in ' + time + 'ms';
                         elements[i].style.opacity = 1;
                     } else {
                         var startOpacity = 0, steps = 1 / 0.02;
