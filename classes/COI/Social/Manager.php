@@ -64,7 +64,7 @@ class Manager {
      * @param  Array $options Optional array of JavaScript options
      * @return String
      */
-    public function javaScript($options) {
+    public function javaScript($options = array()) {
         $js[] = self::commonJS();
 
         foreach ($this->elements as $element) {
