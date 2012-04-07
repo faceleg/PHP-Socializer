@@ -1,4 +1,4 @@
-if ('<?php echo $this->fadeIn ?>') {
+<?php if ($this->fadeIn): ?>
     _socialQueue.push({
         preload: function(f) {
             var buttons = document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>');
@@ -7,4 +7,4 @@ if ('<?php echo $this->fadeIn ?>') {
             }
         }
     });
-}
+<?php endif; ?>
