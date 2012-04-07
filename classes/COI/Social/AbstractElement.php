@@ -65,7 +65,10 @@ abstract class AbstractElement {
 
     public function __toString() {
         $html = $this->render();
-        $html .= $this->script();
+        $js = $this->script();
+        if ($js) {
+            $html .= "<script type='text/javascript'>{$js}</script>";
+        }
         return $html;
     }
 }
