@@ -38,7 +38,7 @@ abstract class AbstractElement {
     public function render(array $options = array()) {
         $this->wasOutput = true;
 
-        $options = array_merge(get_object_vars($this));
+        $options = array_merge(get_object_vars($this), $options);
         $fadeIn = isset($options['fadeIn']) && $options['fadeIn'] ? 'style="opacity:0;"' : '';
 
         $html = $this->template($this->getView(), 'buttons', $options);
