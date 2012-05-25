@@ -9,7 +9,7 @@ _socialQueue.push({
 
         window.fbAsyncInit = function() {
             FB.init({
-                appId: '<?php echo $appId; ?>',
+                appId: '<?php echo $this->appId; ?>',
                 status: true,
                 cookie: true,
                 xfbml: true
