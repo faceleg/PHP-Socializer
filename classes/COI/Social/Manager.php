@@ -96,7 +96,7 @@ class Manager {
         return self::cache(self::compress($js, $options), $options);
     }
 
-    public function compress($js, $options) {
+    public static function compress($js, $options) {
         if (isset($options['compression']) && $options['compression']) {
             $compressor = new Compressor($js, $options['compression']);
             $js = $compressor->compress();
