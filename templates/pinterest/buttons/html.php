@@ -1,1 +1,1 @@
-<a href="http://pinterest.com/pin/create/button/?url=<?php echo $url; ?>&media=<?php echo $image; ?><?php if ($description): ?>&description=<?php echo urlencode($description); ?><?php endif; ?>" class="pin-it-button" count-layout="<?php echo $layout; ?>">Pin It</a>
+<a href="http://pinterest.com/pin/create/button/?url=<?php echo $url; ?>&media=<?php echo $image; ?><?php if ($title): ?>&description=<?php echo urlencode($description); ?><?php endif; ?>" class="pin-it-button" count-layout="<?php echo $layout; ?>">Pin It</a>
