@@ -32,6 +32,6 @@ class Pinterest extends AbstractElement {
      * friction for your users to pin your products.
      * @var string lowers the friction for your users to pin your products.
      */
-    public $description = null;
+    public $title = null;
 
 }
