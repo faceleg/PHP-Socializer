@@ -11,14 +11,14 @@ class Pinterest extends AbstractElement {
     // Required
 
     /**
-     * @var string URL for the object to be pinned.
+     * @var string URL for this object's site.
      */
     public $url = null;
 
     /**
-     * @var string URL for this object's site.
+     * @var string Image URL for the object to be pinned.
      */
-    public $siteUrl = null;
+    public $image = null;
 
     /**
      * @var string| Whether to show the count, and if so where.
