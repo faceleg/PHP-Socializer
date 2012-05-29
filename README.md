@@ -19,38 +19,34 @@ use COI\Social;
 
 require_once 'include.php';
 
-// Create a Manager instance with a Twitter, LinkedIn, Google Plus, Flattr & Facebook button
-$socialManager = new Social\Manager(array(
+/* Somehere in your config */
+ 
+// Create a manager for the Twitter, Google+ & LinkedIn button set
+new Social\Manager(array(
     'twitter' => new Social\Twitter(array(
-        'username' => '##TWITTER USERNAME##',
+        'username' => 'pagesofinterest',
     )),
-    'linkedIn' => new Social\LinkedIn(),
     'googleplus' => new Social\GooglePlus(array(
         'size' => 'medium'
     )),
-    'flattr' => new Social\Flattr(array(
-        'uid' => '##FLATTR USERNAME##',
-        'button' => Social\Flattr\Button\COMPACT,
-        'category' => Social\Flattr\Type\TEXT
-    )),
-    'github' => new Social\GitHub(array(
-        'user' => 'faceleg',
-        'repository' => 'COI-Social',
-        'type' => Social\GitHub\Type\WATCH
-    )),
-    'facebook' => new Social\Facebook(array(
-        'appId' => '##APP ID##',
-        'width' => 350
-    ))
-)), array( // Second argument is an array of options common to all buttons
-    'title' => 'The Title'
+    'linkedIn' => new Social\LinkedIn()
+), array(
+    'fadeIn' => 400
 ));
-
-// Print the buttons' HTML
-echo $socialManager->render();
-
-// Print JavaScript for printed buttons
-echo $socialManager->scripts();
+ 
+/* Where the buttons should be displayed */
+echo $socialManager->render(array(
+    // These options override those used in the manager initialisation above
+    'url' => 'http://pagesofinterest.net/',
+    'title' => 'Pages of Interest', 
+));
+ 
+/* In your footer, just above the closing <body> tag */
+// Output the <script> with src pointing to the combined, compressed & cached JavaScript
+echo COI\Social\Manager::combinedJavaScript(array(
+    'compression' => 'booster',
+    'cacheDirectory' => '/var/www/pagesofinterest.net/public/js/php-socializer',
+    'publicCacheDirectory' => '/js/php-socializer'));
 ?>
 ```
 
