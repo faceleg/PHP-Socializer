@@ -18,6 +18,8 @@ class GitHub extends AbstractElement {
     public $count = true;
     public $size = Size\COMPACT;
 
+    public $buttonUrl = 'http://markdotto.github.com/github-buttons/github-btn.html';
+
     public $width = 95;
     public $height = 20;
 
