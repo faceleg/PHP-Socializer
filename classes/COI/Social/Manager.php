@@ -105,7 +105,7 @@ class Manager {
     }
 
     public static function cache($js, $options) {
-         if (isset($options['cacheDirectory']) && $options['cacheDirectory']) {
+        if (isset($options['cacheDirectory']) && $options['cacheDirectory']) {
             $cache = new Cache($js, $options['cacheDirectory'], $options);
             return $cache->output();
         } else {
