@@ -1,5 +1,6 @@
 <?php
 namespace COI\Social;
+use Exception;
 
 /**
  * Cache the generated JavaScript
@@ -38,7 +39,6 @@ class Cache {
         } else {
             $this->signature = isset($options['compression']) ? $options['compression'] : 'raw';
         }
-
         if (isset($options['publicCacheDirectory']) && $options['publicCacheDirectory']) {
             $this->publicCacheDirectory = $options['publicCacheDirectory'];
         } else {
@@ -54,8 +54,10 @@ class Cache {
         $filename = rtrim($this->cacheDirectory, '/')."/php-socializer-{$this->signature}-".sha1($this->js).'.js';
         if (!file_exists($filename)) {
             if (!is_dir(dirname($filename))) {
-                die($filename);
-                mkdir(dirname($filename), 0777, true);
+                $directory = dirname($filename);
+                if (@mkdir($directory, 0777, true) == false) {
+                    throw new Exception("Failed to create {$directory} with permission 777");
+                }
             }
             file_put_contents($filename, $this->js);
         }

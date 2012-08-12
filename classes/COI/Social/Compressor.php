@@ -5,10 +5,15 @@ use Booster;
 use JavaScriptPacker;
 use JShrink\Minifier;
 
+define('COI\Social\Compressor\BOOSTER', 'booster');
+define('COI\Social\Compressor\PACKER', 'packer');
+define('COI\Social\Compressor\JSHRINK', 'jshrink');
+
 /**
  * Interface for various javascript compressors
  */
 class Compressor {
+
 
     public $js;
     public $compression;
@@ -30,13 +35,13 @@ class Compressor {
      */
     public function compress() {
         switch ($this->compression) {
-            case 'booster': {
+            case Compressor\BOOSTER: {
                 return $this->booster();
             }
-            case 'packer': {
+            case Compressor\PACKER: {
                 return $this->packer();
             }
-            case 'jshrink': {
+            case Compressor\JSHRINK: {
                 return $this->jshrink();
             }
             default: {
@@ -51,6 +56,8 @@ class Compressor {
      * @throws Exception If the CSS-JS-Booster library could not be found
      */
     public function booster() {
+        // Flush any output in the buffer - prevents Content Encoding Errors {@link http://stackoverflow.com/a/11007081/187954}
+        ob_flush();
         $boosterPath = __DIR__.'/../../../dependencies/CSS-JS-Booster/booster/booster_inc.php';
         if (!is_file($boosterPath)) {
             throw new Exception("Failed to load Booster at {$boosterPath}");
