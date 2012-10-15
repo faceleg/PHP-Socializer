@@ -2,7 +2,13 @@
     "name": "faceleg/PHP-Socializer",
     "type": "library",
     "description": "Easy & customizable social integration for your projects",
-    "keywords": ["facebook","twitter", "stumbleupon", "githubg", "social"],
+    "keywords": [
+        "facebook",
+        "twitter",
+        "stumbleupon",
+        "github",
+        "social"
+    ],
     "homepage": "https://github.com/faceleg/PHP-Socializer",
     "license": "MIT",
     "authors": [
@@ -18,7 +24,7 @@
     },
     "autoload": {
         "psr-0": {
-            "COI": "classes"
+            "COI": "classes/"
         }
     }
 }
