@@ -47,7 +47,7 @@ _ga.extractParamFromUri_ = function(uri, paramName) {
     if (!uri) {
         return;
     }
-    var uri = uri.split('#')[0];  // Remove anchor.
+    uri = uri.split('#')[0];  // Remove anchor.
     var parts = uri.split('?');  // Check for query params.
     if (parts.length == 1) {
         return;
@@ -70,22 +70,29 @@ _ga.extractParamFromUri_ = function(uri, paramName) {
  */
 
 /**
- * @type {Array} List of social objects to be loaded when the document is ready
+ * @type {mixed[]} List of social objects to be loaded when the document is ready
  */
 _socialQueue = [];
 
+/**
+ * @param  {Object} w The window.
+ * @param  {Object} d The document.
+ */
 (function(w, d) {
 
     /**
-     * Begin loading social assets
+     * Begin loading social assets.
      */
     var go = function() {
 
+        /** @type {Object} Fade handling object. */
         var f = {
+
             /**
-             * Simple fade in effect
-             * @param  {Array} elements An array of elements to fade in
-             * @param  {Integer} time Total animation time
+             * Simple fade in effect.
+             *
+             * @param {Array} elements An array of elements to fade in
+             * @param {Integer} time Total animation time
              */
             fadeIn: function(elements, time) {
                 // If the browser supports CSS transitions, use them
@@ -117,6 +124,14 @@ _socialQueue = [];
                     }
                 }
             },
+            /**
+             * Attach the f.fadeIn function as an onload event to the iFrame,
+             * then 'kick' it.
+             *
+             * @param  {Element} fr The iFrame
+             * @param  {Element} b The wrapping div.
+             * @param  {int} d Fade animation duration.
+             */
             iframeOnload: function(fr, b, d) {
                 fr.onload = function() {
                     f.fadeIn([b], d);
@@ -125,6 +140,17 @@ _socialQueue = [];
                 fr.src = '';
                 fr.src = src;
             },
+
+            /**
+             * Repeatedly check if button is rendered, when it is, perform
+             * appropriate action.
+             *
+             * @param {Element} b The wrapping div.
+             * @param {Function} r Function to call with b, returns true or false
+             *                     depending on whether button is rendered.
+             * @param {int} d Fade animation duration.
+             * @param {Function} m Optional function to be called when rendered.
+             */
             awaitRenderButton: function(b, r, d, m) {
                 if (!r(b)) { // Button not rendered yet, wait
                     window.setTimeout(function() {
@@ -139,6 +165,12 @@ _socialQueue = [];
                     f.fadeIn([b], d);
                 }
             },
+
+            /**
+             * Entry point to the fade in handling object.
+             *
+             * @param {Object} o Hash of options.
+             */
             awaitRender: function(o) {
                 for(var i = 0; i < o.buttons.length; i++) {
                     f.awaitRenderButton(o.buttons[i], o.isRendered, o.duration, o.renderedMethod);

@@ -6,7 +6,10 @@ use JavaScriptPacker;
 use JShrink\Minifier;
 
 /**
- * Interface for various javascript compressors
+ * Interface for various javascript compressors.
+ *
+ * It is recommended that you use mod_pagespeed (if serving with Apache), or
+ * the equivalent for your server software.
  */
 class Compressor {
 
@@ -15,7 +18,8 @@ class Compressor {
     public $compression;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param String $js The JavaScript to be compressed
      * @param String $compression The type of compression to use. Compression libraries should be included in coi-social/dependencies
      */
@@ -25,7 +29,8 @@ class Compressor {
     }
 
     /**
-     * Make the appropriate compression method call
+     * Make the appropriate compression method call.
+     *
      * @return String The compressed javascript
      * @throws Exception If $this->compression is set to an unrecognised compressor
      */
@@ -48,6 +53,7 @@ class Compressor {
 
     /**
      * Compress using the {@link https://github.com/Schepp/CSS-JS-Booster CSS-JS-Booster} compression library.
+     *
      * @return String The compressed JavaScript
      * @throws Exception If the CSS-JS-Booster library could not be found
      */
@@ -67,6 +73,7 @@ class Compressor {
 
     /**
      * Compress using the {@link http://joliclic.free.fr/php/javascript-packer/en/ Packer} compression library.
+     *
      * @return String The compressed JavaScript
      * @throws Exception If the Packer library could not be found
      */
@@ -83,6 +90,7 @@ class Compressor {
 
     /**
      * Compress using the {@link https://github.com/tedivm/JShrink/ JShrink} compression library.
+     *
      * @return String The compressed JavaScript
      * @throws Exception If the JShrink library could not be found
      */

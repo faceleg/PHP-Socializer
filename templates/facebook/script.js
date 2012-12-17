@@ -20,8 +20,9 @@ _socialQueue.push({
              * Tracks Facebook likes, unlikes and sends by suscribing to the Facebook
              * JSAPI event model. Note: This will not track facebook buttons using the
              * iFrame method.
+             *
              * @param {string} opt_pageUrl An optional URL to associate the social
-             *     tracking with a particular page.
+             *                             tracking with a particular page.
              * @param {string} opt_trackerName An optional name for the tracker object.
              */
             _ga.trackFacebook = function(opt_pageUrl, opt_trackerName) {
