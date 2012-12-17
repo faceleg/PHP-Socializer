@@ -2,10 +2,6 @@
 namespace COI\Social;
 use COI\Social\Pinterest\Count;
 
-define('COI\Social\Pinterest\Count\VERTICAL', 'vertical');
-define('COI\Social\Pinterest\Count\HORIZONTAL', 'horizontal');
-define('COI\Social\Pinterest\Count\NONE', 'none');
-
 class Pinterest extends AbstractElement {
 
     // Required

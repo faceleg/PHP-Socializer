@@ -5,10 +5,6 @@ use Booster;
 use JavaScriptPacker;
 use JShrink\Minifier;
 
-define('COI\Social\Compressor\BOOSTER', 'booster');
-define('COI\Social\Compressor\PACKER', 'packer');
-define('COI\Social\Compressor\JSHRINK', 'jshrink');
-
 /**
  * Interface for various javascript compressors
  */
