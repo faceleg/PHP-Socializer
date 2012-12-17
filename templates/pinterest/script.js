@@ -16,10 +16,7 @@ _socialQueue.push({
                 buttons: document.getElementsByClassName('coi-social-button-<?php echo $this->name; ?>'),
                 duration: '<?php echo $this->fadeIn; ?>',
                 isRendered: function(element) {
-                    return element.getElementsByTagName('IFRAME')[0];
-                },
-                renderedMethod: function(b, d) {
-                    f.iframeOnload(b.getElementsByTagName('IFRAME')[0], b, d);
+                    return element.getElementsByTagName('A')[0];
                 }
             });
         }
