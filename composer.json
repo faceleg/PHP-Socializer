@@ -24,6 +24,10 @@
     "autoload": {
         "psr-0": {
             "COI": "classes/"
-        }
+        },
+        "files": [
+            "functions/local.php",
+            "functions/shortcuts.php"
+        ]
     }
 }
