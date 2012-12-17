@@ -26,8 +26,7 @@
             "COI": "classes/"
         },
         "files": [
-            "functions/local.php",
-            "functions/shortcuts.php"
+            "include.php"
         ]
     }
 }
