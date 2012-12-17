@@ -11,15 +11,17 @@ class Cache {
      * @var String The JavaScript to be cached
      */
     public $js;
+
     /**
-     * [$cacheDirectory description]
      * @var String Directory to write JavaScript file on the server
      */
     public $cacheDirectory;
+
     /**
      * @var String The public path to the JavaScript file
      */
     public $publicCacheDirectory;
+
     /**
      * @var String Identifying string, ensuring that changing options will result in a busted cache
      */
@@ -27,6 +29,7 @@ class Cache {
 
     /**
      * Constructor.
+     *
      * @param String $js JavaScript to be written to a cache file
      * @param String $cacheDirectory Directory to write Javascript file on the server
      * @param Array $options Array of additional options
