@@ -17,7 +17,8 @@ These buttons can be created with the following code:
 <?php
 use COI\Social;
 
-require_once 'include.php';
+include_once 'include.php'; // Contains constants
+include_once 'require.php'; // Not necessary if you're using an autoloader
 
 /* Somehere in your config */
  
