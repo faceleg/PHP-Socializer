@@ -17,5 +17,3 @@ include_once __DIR__.'/classes/COI/Social/Cache.php';
 
 include_once __DIR__.'/functions/local.php';
 include_once __DIR__.'/functions/shortcuts.php';
-
-include_once __DIR__.'/constants.php';
