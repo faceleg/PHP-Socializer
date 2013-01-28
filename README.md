@@ -62,7 +62,8 @@ To render a single button, use the following syntax:
 <?php
 use COI\Social;
 
-require_once 'include.php';
+include_once 'include.php'; // Contains constants
+include_once 'require.php'; // Not necessary if you're using an autoloader
 
 // Render a single button
 echo Social\GitHub(array(
