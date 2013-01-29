@@ -44,10 +44,7 @@ echo $socialManager->render(array(
  
 /* In your footer, just above the closing <body> tag */
 // Output the <script> with src pointing to the combined, compressed & cached JavaScript
-echo COI\Social\Manager::combinedJavaScript(array(
-    'compression' => 'booster',
-    'cacheDirectory' => '/var/www/pagesofinterest.net/public/js/php-socializer',
-    'publicCacheDirectory' => '/js/php-socializer'));
+echo COI\Social\Manager::combinedJavaScript();
 ?>
 ```
 
