@@ -128,41 +128,41 @@ _socialQueue = [];
              * Attach the f.fadeIn function as an onload event to the iFrame,
              * then 'kick' it.
              *
-             * @param  {Element} fr The iFrame
-             * @param  {Element} b The wrapping div.
-             * @param  {int} d Fade animation duration.
+             * @param  {Element} iframe The iFrame
+             * @param  {Element} wrappingDiv The wrapping div.
+             * @param  {int} fadeDuration Fade animation duration.
              */
-            iframeOnload: function(fr, b, d) {
-                fr.onload = function() {
-                    f.fadeIn([b], d);
+            iframeOnload: function(iframe, wrappingDiv, fadeDuration) {
+                iframe.onload = function() {
+                    f.fadeIn([wrappingDiv], fadeDuration);
                 };
-                var src = fr.src;
-                fr.src = '';
-                fr.src = src;
+                var src = iframe.src;
+                iframe.src = '';
+                iframe.src = src;
             },
 
             /**
              * Repeatedly check if button is rendered, when it is, perform
              * appropriate action.
              *
-             * @param {Element} b The wrapping div.
-             * @param {Function} r Function to call with b, returns true or false
-             *                     depending on whether button is rendered.
-             * @param {int} d Fade animation duration.
-             * @param {Function} m Optional function to be called when rendered.
+             * @param {Element} wrappingDiv The wrapping div.
+             * @param {Function} isRendered Function to call with b, returns true or false
+             *                              depending on whether button is rendered.
+             * @param {int} fadeDuration Fade animation duration.
+             * @param {Function} whenRendered Optional function to be called when rendered.
              */
-            awaitRenderButton: function(b, r, d, m) {
-                if (!r(b)) { // Button not rendered yet, wait
+            awaitRenderButton: function(wrappingDiv, isRendered, fadeDuration, whenRendered) {
+                if (!isRendered(wrappingDiv)) { // Button not rendered yet, wait
                     window.setTimeout(function() {
-                        f.awaitRenderButton(b, r, d, m);
+                        f.awaitRenderButton(wrappingDiv, isRendered, fadeDuration, whenRendered);
                     }, 100);
                     return;
                 }
                 // Button rendered
-                if (typeof m !== 'undefined') { // An alternative rendered function was provided
-                    m(b, d);
+                if (typeof whenRendered !== 'undefined') { // An alternative rendered function was provided
+                    whenRendered(wrappingDiv, fadeDuration);
                 } else { // Fade in
-                    f.fadeIn([b], d);
+                    f.fadeIn([wrappingDiv], fadeDuration);
                 }
             },
 
@@ -181,10 +181,13 @@ _socialQueue = [];
         var fjs = document.getElementsByTagName('script')[0];
 
         /**
-         * Load the social object
+         * Load the social object.
+         *
          * @param  {Object} s A social object to be loaded
+         * @param {Object} f The script's fade handling object
          */
         var load = function(s, f) {
+
             // Ensure script isn't loaded yet
             if (d.getElementById(s.id)) {
                 return;
@@ -198,9 +201,10 @@ _socialQueue = [];
 
                 // Create and initialise script
                 var js = d.createElement('script');
-                js.src = s.url;
+                js.className = s.className;
                 js.id = '_social' + s.id;
                 js.async = true;
+                js.src = s.url;
 
                 if (s.onload) { // Attach the onload function if present
                     js.onload = function() { s.onload(f); };
