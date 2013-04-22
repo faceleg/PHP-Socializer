@@ -1,7 +1,7 @@
 _socialQueue.push({
 
     /** @type {String} Campaign Monitor's script URL */
-    url: '//btn.createsend1.com/js/sb.min.js?v=2',
+    url: 'https://btn.createsend1.com/js/sb.min.js?v=2',
 
     /** @type {String} Prevents double-loading */
     id: '<?php echo $this->name; ?>',
