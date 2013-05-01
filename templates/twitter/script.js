@@ -1,5 +1,5 @@
 _socialQueue.push({
-    url: 'http://platform.twitter.com/widgets.js',
+    url: '//platform.twitter.com/widgets.js',
     id: '<?php echo $this->name; ?>',
     onload: function(f) {
 
